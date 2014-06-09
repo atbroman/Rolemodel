@@ -1,0 +1,12 @@
+Package: Rolemodel
+Version: 1.0
+Date: 2013-10-14
+Title: Gene-set analysis via MFA-ILP
+Author: Zhishi Wang <wangz@stat.wisc.edu, Michael Newton <newton@stat.wisc.edu>, Subhrangshu Nandi
+Maintainer: Zhishi Wang <wangz@stat.wisc.edu>
+Description: Gene-set enrichment analysis for GO and KEGG using a multi-functional analyzer via integer linear programming (ILP)
+Depends: R (>= 2.10), Rglpk
+LazyLoad: yes
+LazyData: yes
+License: GPL (>= 2)
+Packaged: 2013-10-14 18:22:48 UTC
