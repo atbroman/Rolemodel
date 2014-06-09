@@ -6,8 +6,11 @@ export(sequentialRM)
 export(shrinkRM)
 export(subRM)
 
+export(bp)
+useDynLib(bp)
+
 ## import methods ##
 
 ## import functions ##
-
+importFrom(mgsa,mgsa)
 
