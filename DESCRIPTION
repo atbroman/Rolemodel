@@ -6,7 +6,7 @@ Author: Zhishi Wang <wangz@stat.wisc.edu, Michael Newton <newton@stat.wisc.edu>,
 Maintainer: Zhishi Wang <wangz@stat.wisc.edu>
 Description: Gene-set enrichment analysis for GO and KEGG using a multi-functional analyzer via integer linear programming (ILP)
 Depends: R (>= 2.10), Rglpk, mgsa, AnnotationDbi
-Suggests: GO.db, KEGG.db
+Suggests: org.Hs.eg.db, GO.db, KEGG.db
 LazyLoad: yes
 LazyData: yes
 License: GPL (>= 2)

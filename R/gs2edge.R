@@ -8,7 +8,8 @@ gs2edge <- function(idlist,
                  lib, library.loc=NULL,
                  n.upp=50,n.low=5,
                  sets=c("GO","KEGG")){
-    require(paste(lib,"db",sep="."),character.only=TRUE,lib.loc=lib.loc)
+    require(paste(lib,"db",sep="."),character.only=TRUE,
+            lib.loc=library.loc)
 
     idtype <- match.arg(idtype)
     sets <- match.arg(sets)

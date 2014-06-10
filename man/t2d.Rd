@@ -6,7 +6,7 @@
 The list includes an incidence matrix I and the corresponding gene-level data y.
 I: The incidence is a  0-1 matrix with unique row and column names,
   where rows are genes and columns are gene-sets.
-y: Gene-level 0-1 data with the same names as the row names of I.}
+y: Gene-level 0-1 data with the same names as the row names of I.
 }
 \usage{data(t2d)}
 \format{
