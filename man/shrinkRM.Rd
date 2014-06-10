@@ -36,6 +36,8 @@ data(Type2D)
 alpha <- 0.00019
 gamma <- 0.02279
 p <- 0.00331
+\dontrun{
 ## shrink the matrix
 new <- shrinkRM(I, y, alpha, gamma, p)
+}
 }

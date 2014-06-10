@@ -38,8 +38,11 @@ data(Type2D)
 alpha <- 0.00019
 gamma <- 0.02279
 p <- 0.00331
-## use the sequential approach to get the MAP estimate on the Type 2 diabetes example
+\dontrun{
+## use the sequential approach to get the MAP estimate on the Type 2
+diabetes example; this may take a couple hours ##
 res <- sequentialRM(I, y, nupstart = 10, by =1, alpha, gamma, p)
+}
 }
 
 
