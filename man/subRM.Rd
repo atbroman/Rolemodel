@@ -28,7 +28,7 @@ subRM(I, n.low, n.up)
 \author{ Zhishi Wang, Michael Newton and Subhrangshu Nandi.}
 
 \examples{
-data(Type2D)
+data(t2d)
 ## Use 5 and 10 as the trimming parameters
-newI <- subRM(I, 5, 10)
+newI <- subRM(t2d$I, 5, 10)
 }

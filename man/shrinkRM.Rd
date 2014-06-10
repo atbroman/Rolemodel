@@ -31,13 +31,13 @@ The amount of shrinkage may be dramatic, but it depends on the observed data y, 
 \author{ Zhishi Wang, Michael Newton, Subhrangshu Nandi}
 
 \examples{
-data(Type2D)
+data(t2d)
 ## set the system parameters
 alpha <- 0.00019
 gamma <- 0.02279
 p <- 0.00331
 \dontrun{
 ## shrink the matrix
-new <- shrinkRM(I, y, alpha, gamma, p)
+new <- shrinkRM(t2d$I, t2d$y, alpha, gamma, p)
 }
 }

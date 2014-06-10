@@ -28,11 +28,11 @@ ILP(I, y, alpha, gamma, p)
 \author{ Zhishi Wang, Michael Newton and Subhrangshu Nandi.}
 
 \examples{
-data(Type2D)
+data(t2d)
 ## Use 5 and 10 as the trimming parameters
-newI <- subRM(I, 5, 10)
+newI <- subRM(t2d$I, 5, 10)
 ## the corresponding gene-level data
-newy <- y[rownames(newI)]
+newy <- t2d$y[rownames(newI)]
 
 ## set the system parameters
 alpha <- 0.00019

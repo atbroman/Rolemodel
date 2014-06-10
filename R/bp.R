@@ -84,7 +84,7 @@ function(whole, part, edge,
           as.integer(nsaved),
           savedDouble=as.double(rep(0, nsaved*nsavedDbl)),
           savedInt=as.integer(rep(0, nsaved*nsavedInt)),
-          PACKAGE="bp")
+          PACKAGE="Rolemodel")
 
   result <- data.frame(Name=z$resultName,
                        ActiveProbability=z$resultProb,

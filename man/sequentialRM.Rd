@@ -33,7 +33,7 @@ We first perform the ILP on an initial incidence matrix (the smaller matrix) wit
 \author{ Zhishi Wang, Michael Newton and Subhrangshu Nandi.}
 
 \examples{
-data(Type2D)
+data(t2d)
 ## set the system parameters
 alpha <- 0.00019
 gamma <- 0.02279
@@ -41,7 +41,7 @@ p <- 0.00331
 \dontrun{
 ## use the sequential approach to get the MAP estimate on the Type 2
 diabetes example; this may take a couple hours ##
-res <- sequentialRM(I, y, nupstart = 10, by =1, alpha, gamma, p)
+res <- sequentialRM(t2d$I, t2d$y, nupstart = 10, by =1, alpha, gamma, p)
 }
 }
 

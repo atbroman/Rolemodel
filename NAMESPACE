@@ -8,9 +8,13 @@ export(shrinkRM)
 export(subRM)
 
 export(bp)
-
-## import methods ##
+export(I2edge)
+export(gs2edge)
+export(bpsub)
+export(getPi)
 
 ## import functions ##
-importFrom(mgsa,mgsa)
+importFrom(mgsa, mgsa)
+importFrom(Rglpk, Rglpk_solve_LP)
+importFrom(AnnotationDbi, toTable, revmap, mappedLkeys)
 
