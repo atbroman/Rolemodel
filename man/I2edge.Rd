@@ -1,9 +1,8 @@
 \name{I2edge}
 \alias{I2edge}
 
-\title{
-Create edge data frame from gene - geneset indicator matrix
-}
+\title{Create edge data frame from gene - geneset indicator matrix}
+\description{Used for input to \code{bp} function, \code{edge} argument}
 
 \usage{
 I2edge(I)

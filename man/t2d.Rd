@@ -3,11 +3,10 @@
 \docType{data}
 \title{Example data set}
 \description{
-The data set includes an incidence matrix I and the corresponding gene-level data y.
-\item{I}{The incidence 0-1 matrix with unique row and column names,
+The list includes an incidence matrix I and the corresponding gene-level data y.
+I: The incidence is a  0-1 matrix with unique row and column names,
   where rows are genes and columns are gene-sets.
-  The size of I is 10626 x 6037.}
-\item{y}{Gene-level 0-1 data with the same names as the row names of I.}
+y: Gene-level 0-1 data with the same names as the row names of I.}
 }
 \usage{data(t2d)}
 \format{

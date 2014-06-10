@@ -30,9 +30,7 @@ gs2edge(idlist, idtype = c("SYMBOL", "ENTREZ", "REFSEQ", "ENSEMBL", "ACCNUM", "U
 \item{y}{Indicator vector of genes in gene sets that are in 'idlist'}
 \item{edge}{data.frame of edges between genes and gene sets}
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{Aimee Teo Broman}
 
 \seealso{

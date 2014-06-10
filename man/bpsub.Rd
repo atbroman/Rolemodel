@@ -8,7 +8,7 @@ Wrapper for MCMC with bipartite graph
 Ordered subset of "whole" results from \code{bp}
 }
 \usage{
-bpsub(bpout, pr = 0.5, ...)
+bpsub(bpout, pr = 0.5)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

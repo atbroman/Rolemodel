@@ -5,7 +5,8 @@ Title: Gene-set analysis via MFA-ILP
 Author: Zhishi Wang <wangz@stat.wisc.edu, Michael Newton <newton@stat.wisc.edu>,Subhrangshu Nandi, Aimee Teo Broman, Karl W. Broman, Bret Larget
 Maintainer: Zhishi Wang <wangz@stat.wisc.edu>
 Description: Gene-set enrichment analysis for GO and KEGG using a multi-functional analyzer via integer linear programming (ILP)
-Depends: R (>= 2.10), Rglpk, mgsa, GO.db, KEGG.db, AnnotationDbi
+Depends: R (>= 2.10), Rglpk, mgsa, AnnotationDbi
+Suggests: GO.db, KEGG.db
 LazyLoad: yes
 LazyData: yes
 License: GPL (>= 2)

@@ -1,8 +1,5 @@
 ILP <- function(I, y, alpha, gamma, p)
 {
-   ##load the package for interger linear programming
-   library('Rglpk')
-   
    ## Check validity of arguments
    if(p <= 0 | p >= 1)
       stop('p should be between 0 and 1')
