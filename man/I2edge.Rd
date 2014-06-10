@@ -26,7 +26,7 @@ Aimee Teo Broman
 \code{gsEdge}
 }
 \examples{
-data(exampleRM)
+data(Type2D)
 
 eout <- I2edge(I)
 }

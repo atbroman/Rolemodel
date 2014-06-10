@@ -45,7 +45,7 @@ whole nodes active with probability \code{pi}, no illegal nodes; or
 with response equal to 1 above 0.4 are active, no illegal nodes.
 }
 \examples{
-data(exampleRM)
+data(Type2D)
 
 eout <- I2edge(I)
 bp.out <- bp(whole=colnames(I), part=y, edge=eout,
