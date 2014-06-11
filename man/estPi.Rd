@@ -1,5 +1,5 @@
-\name{getPi}
-\alias{getPi}
+\name{estPi}
+\alias{estPi}
 
 \title{Estimate p using \code{mgsa}}
 \description{
@@ -7,7 +7,7 @@ Uses the \code{mgsa} library to estimate \code{pi} for input to the
 \code{ILP}, \code{sequentialRM}, \code{bp} functions.
 }
 \usage{
-getPi(I, y, alpha, gamma)
+estPi(I, y, alpha, gamma)
 }
 
 \arguments{
@@ -38,7 +38,7 @@ Aimee Teo Broman, Zhishi Wang
 \examples{
 data(t2d)
 
-getPi(t2d$I,t2d$y,alpha=0.00019,gamma=0.02279)
+estPi(t2d$I,t2d$y,alpha=0.00019,gamma=0.02279)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
