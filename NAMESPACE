@@ -10,8 +10,8 @@ export(subRM)
 export(bp)
 export(I2edge)
 export(gs2edge)
-export(bpsub)
-export(getPi)
+export(bpTable)
+export(estPi)
 
 ## import functions ##
 importFrom(mgsa, mgsa)

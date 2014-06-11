@@ -1,5 +1,5 @@
-\name{bpsub}
-\alias{bpsub}
+\name{bpTable}
+\alias{bpTable}
 
 \title{
 Wrapper for MCMC with bipartite graph
@@ -8,7 +8,7 @@ Wrapper for MCMC with bipartite graph
 Ordered subset of "whole" results from \code{bp}
 }
 \usage{
-bpsub(bpout, pr = 0.5)
+bpTable(bpout, pr = 0.5)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -37,7 +37,7 @@ eout <- gs2edge(idlist,n.upp=30,idtype="SYMBOL",lib="org.Hs.eg")
 
 bpout <- bp(whole=colnames(eout$I),part=eout$y,edge=eout$edge)
 
-bpsub(bpout,pr=0.3)
+bpTable(bpout,pr=0.3)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
