@@ -2,4 +2,4 @@
 *.o
 *.so
 *~
-data/*.RData
+*.rds

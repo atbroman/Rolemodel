@@ -11,9 +11,9 @@ ILP <- function(I, y, alpha, gamma, p)
       stop('alpha should be less than gamma')
     ## Check the validity of I and y
    if(!all(I %in% c(0,1)))
-      stop('I should only consisit of 0 and 1')
+      stop('I should only consist of 0 and 1')
    if(!all(y %in% c(0,1)))
-      stop('y should only consisit of 0 and 1')   
+      stop('y should only consist of 0 and 1')   
    
    m <- nrow(I)
    n <- ncol(I)

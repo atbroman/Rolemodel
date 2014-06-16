@@ -2,10 +2,10 @@ useDynLib(Rolemodel)
 
 ## function to export ##
 export(ILP)
-export(optimalRM)
 export(sequentialRM)
-export(shrinkRM)
 export(subRM)
+export(optimalRM)
+export(shrinkRM)
 
 export(bp)
 export(I2edge)
