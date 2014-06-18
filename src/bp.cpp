@@ -82,8 +82,8 @@ class ModelNumbers
 {
 public:
   double alpha, logAlpha, logOneMinusAlpha;
-  double beta, logBeta, logOneMinusBeta;
-  double pi, logPi, logOneMinusPi;
+  double gamma, logGamma, logOneMinusGamma;
+  double p, logP, logOneMinusP;
   ModelNumbers() {}
 };
 
@@ -116,11 +116,11 @@ public:
 		   logPrior(0.0)
     {}
   double calculateLogLikelihood(ModelNumbers m) {
-    logLikelihood = numActiveOne*m.logBeta + numActiveZero*m.logOneMinusBeta + numInactiveOne*m.logAlpha + numInactiveZero*m.logOneMinusAlpha;
+    logLikelihood = numActiveOne*m.logGamma + numActiveZero*m.logOneMinusGamma + numInactiveOne*m.logAlpha + numInactiveZero*m.logOneMinusAlpha;
     return logLikelihood;
   }
   double calculateLogPrior(ModelNumbers m) {
-    logPrior = numActiveWholeNodes*m.logPi + numInactiveWholeNodes*m.logOneMinusPi;
+    logPrior = numActiveWholeNodes*m.logP + numInactiveWholeNodes*m.logOneMinusP;
     return logPrior;
   }
 };
@@ -284,15 +284,15 @@ public:
     modelNumbers.logAlpha = log(a);
     modelNumbers.logOneMinusAlpha = log(1.0-a);
   }
-  void setBeta(double b) {
-    modelNumbers.beta=b;
-    modelNumbers.logBeta = log(b);
-    modelNumbers.logOneMinusBeta = log(1.0-b);
+  void setGamma(double b) {
+    modelNumbers.gamma=b;
+    modelNumbers.logGamma = log(b);
+    modelNumbers.logOneMinusGamma = log(1.0-b);
   }
-  void setPi(double p) {
-    modelNumbers.pi=p;
-    modelNumbers.logPi = log(p);
-    modelNumbers.logOneMinusPi = log(1.0-p);
+  void setP(double pp) {
+    modelNumbers.p=pp;
+    modelNumbers.logP = log(pp);
+    modelNumbers.logOneMinusP = log(1.0-pp);
   }
   int getNumGenerations() { return mcmcParameters.numGenerations; }
   void setNumGenerations(int n) { mcmcParameters.numGenerations = n; }
@@ -503,15 +503,15 @@ int WNode::countResponse()
   return responseSum;
 }
 
-void WNode::initiate(string initialState,double pi,StateNumbers& stateNumbers)
+void WNode::initiate(string initialState,double p,StateNumbers& stateNumbers)
 {
 //  if want to start with all whole nodes inactive, do nothing
   if ( initialState == "inactive" )
     return;
 
-//  if want to start with a random start with probability pi for each whole node to be active, do this
+//  if want to start with a random start with probability p for each whole node to be active, do this
   if ( initialState == "random" ) {
-    if ( unif_rand() < pi )
+    if ( unif_rand() < p )
       initialSetActive(stateNumbers);
     return;
   }
@@ -547,7 +547,7 @@ void State::initiateActivities()
   stateNumbers.numInactiveWholeNodes = getNumWholeNodes();
 
   for ( vector<WNode*>::iterator p=wnodes.begin(); p != wnodes.end(); ++p )
-    (*p)->initiate(mcmcParameters.initialState,modelNumbers.pi,stateNumbers);
+    (*p)->initiate(mcmcParameters.initialState,modelNumbers.p,stateNumbers);
 
   activateAllIllegalNodes();
 
@@ -569,7 +569,7 @@ void State::initiateActivities()
 //   response = 0 or 1
 // Count the number of part nodes in each category.
 // MCMC updates may change these counts.
-// The counts and alpha/beta are all that is needed to compute the likelihood.
+// The counts and alpha/gamma are all that is needed to compute the likelihood.
 double State::calculateInitialLogLikelihood()
 {
   for ( vector<PNode*>::iterator p=pnodes.begin(); p!= pnodes.end(); ++p ) {
@@ -697,7 +697,7 @@ double State::mcmcFlipWNode(bool postBurnin)
 void initialize(int n_whole, char **whole_names,
                 int n_part, char **part_names, int *part_activity,
                 int n_edge, char **edge_whole, char **edge_part,
-                double alpha, double beta, double pi,
+                double alpha, double gamma, double p,
                 int nburn, int ngen, int sub,
                 double penalty, char *initial,
                 State &state)
@@ -715,20 +715,20 @@ void initialize(int n_whole, char **whole_names,
   numBurnin = nburn;
   subSampleRate = sub;
 
-  if ( alpha<=0 || alpha >=beta)
-    error("alpha must be > 0 and < beta");
-  if ( beta<=alpha || beta >= 1 )
-    error("beta must be >= alpha and < 1");
-  if ( pi<= 0 || pi >= 1 )
-    error("pi must be > 0 and < 1");
+  if ( alpha<=0 || alpha >=gamma)
+    error("alpha must be > 0 and < gamma");
+  if ( gamma<=alpha || gamma >= 1 )
+    error("gamma must be >= alpha and < 1");
+  if ( p<= 0 || p >= 1 )
+    error("p must be > 0 and < 1");
   if ( numGen < 0 || numBurnin < 0 || subSampleRate < 0)
     error("numGen, numBurnin, and subSampleRate must be >= 0");
 
-// Set alpha and beta and pi
-  REprintf("Setting alpha, beta, and pi....");
+// Set alpha and gamma and p
+  REprintf("Setting alpha, gamma, and p....");
   state.setAlpha(alpha);
-  state.setBeta(beta);
-  state.setPi(pi);
+  state.setGamma(gamma);
+  state.setP(p);
   REprintf("done.\n");
 
 // Set MCMC parameters
@@ -816,7 +816,7 @@ void initialize(int n_whole, char **whole_names,
 void bp(int n_whole, char **whole_names,
         int n_part, char **part_names, int *part_activity,
         int n_edge, char **edge_whole, char **edge_part,
-        double alpha, double beta, double pi,
+        double alpha, double gamma, double p,
         int nburn, int ngen, int sub,
         double penalty, char *initial,
         char **resultName, int resultName_size,
@@ -834,7 +834,7 @@ void bp(int n_whole, char **whole_names,
   initialize(n_whole, whole_names,
              n_part, part_names, part_activity,
              n_edge, edge_whole, edge_part,
-             alpha,beta,pi,nburn,ngen,sub,penalty,initial,
+             alpha,gamma,p,nburn,ngen,sub,penalty,initial,
              state);
 
   const int window=100000;
@@ -942,7 +942,7 @@ extern "C" {
   void R_bp(int *n_whole, char **whole_names,
             int *n_part, char **part_names, int *part_activity,
             int *n_edge, char **edge_whole, char **edge_part,
-            double *alpha, double *beta, double *pi,
+            double *alpha, double *gamma, double *p,
             int *nburn, int *ngen, int *sub, 
             double *penalty, char **initial,
             char **resultName, int *resultName_size,
@@ -967,7 +967,7 @@ extern "C" {
     bp(*n_whole, whole_names,
        *n_part, part_names, part_activity,
        *n_edge, edge_whole, edge_part,
-       *alpha, *beta, *pi,
+       *alpha, *gamma, *p,
        *nburn, *ngen, *sub,
        *penalty, *initial,
        resultName, *resultName_size,

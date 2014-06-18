@@ -3,22 +3,23 @@
 \alias{bp}
 \title{MCMC with bipartite graph}
 \usage{
-bp(whole, part, edge, alpha = 0.05, beta = 0.2, pi = 0.01,
+bp(whole, part, edge, alpha = 0.05, gamma = 0.2, p = 0.01,
   nburn = 10000, ngen = 100000, sub = 1000, penalty = 2,
   initial = c("inactive", "random", "high"))
 }
 \arguments{
-\item{whole}{Vector of character strings with names of whole nodes}
+\item{whole}{Vector of character strings with names of whole nodes (gene-sets)}
 
-\item{part}{Vector of 0's and 1's indicating active part nodes; names are the names of the part nodes}
+\item{part}{Vector of 0's and 1's indicating active part nodes; names
+  are the names of the part nodes (genes)}
 
 \item{edge}{Matrix with two columns; each row indicates an edge between a whole node and a part node}
 
-\item{alpha}{Parameter alpha (0 < alpha < beta < 1)}
+\item{alpha}{Parameter alpha (0 < alpha < gamma < 1)}
 
-\item{beta}{Parameter alpha (0 < alpha < beta < 1)}
+\item{gamma}{Parameter gamma (0 < alpha < gamma < 1)}
 
-\item{pi}{Parameter pi (0 < pi < 1)}
+\item{p}{Parameter p (0 < p < 1)}
 
 \item{nburn}{Number of burn-in generations}
 
@@ -31,8 +32,14 @@ bp(whole, part, edge, alpha = 0.05, beta = 0.2, pi = 0.01,
 \item{initial}{Initial state (see Details)}
 }
 \value{
-data frame with "whole" results; burn+sample detail are included as an attribute,
-\code{"samples"}, which is a matrix
+data frame with "whole" results; 
+\item{Name}{The names of whole nodes}
+\item{ActiveProbability}{The marginal posterior probabilities of whole nodes}
+\item{Count}{Number of active samples for each whole node}
+\item{Sample}{Number of generated samples for each whole node}
+\item{Degree}{The degree of each whole node}
+\item{Response}{The response of each whole node}
+dimburn + sample detail are included as an attribute, \code{"samples"}, which is a matrix.
 }
 \description{
 MCMC with bipartite graph
@@ -40,7 +47,7 @@ MCMC with bipartite graph
 \details{
 The \code{initial} argument can take one of three values:
 \code{"inactive"} - all whole nodes inactive; \code{"random"} - all
-whole nodes active with probability \code{pi}, no illegal nodes; or
+whole nodes active with probability \code{p}, no illegal nodes; or
 \code{"high"} - all nodes with proportion of connected part nodes
 with response equal to 1 above 0.4 are active, no illegal nodes.
 }
@@ -48,8 +55,10 @@ with response equal to 1 above 0.4 are active, no illegal nodes.
 data(t2d)
 
 eout <- I2edge(t2d$I)
+
 bp.out <- bp(whole=colnames(t2d$I), part=t2d$y, edge=eout,
-             nburn=1000, ngen=1000, sub=100)
+alpha=0.00019, gamma=0.023, p=0.0033,
+nburn=1000000, ngen=10000000, sub=1000, penalty=5, initial="random")
 }
 \keyword{models}
 

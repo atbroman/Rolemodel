@@ -4,9 +4,9 @@
 #' @param whole Vector of character strings with names of whole nodes
 #' @param part Vector of 0's and 1's indicating active part nodes; names are the names of the part nodes
 #' @param edge Matrix with two columns; each row indicates an edge between a whole node and a part node
-#' @param alpha Parameter alpha (0 < alpha < beta < 1)
-#' @param beta Parameter alpha (0 < alpha < beta < 1)
-#' @param pi Parameter pi (0 < pi < 1)
+#' @param alpha Parameter alpha (0 < alpha < gamma < 1)
+#' @param gamma Parameter alpha (0 < alpha < gamma < 1)
+#' @param p Parameter p (0 < p < 1)
 #' @param nburn Number of burn-in generations
 #' @param ngen Number of sample generations
 #' @param sub Subsample rate for burn-in and sample files
@@ -32,14 +32,14 @@
 #'              nburn=1000, ngen=1000, sub=100)
 bp <-
 function(whole, part, edge,
-         alpha=0.05, beta=0.2, pi=0.01,
+         alpha=0.05, gamma=0.2, p=0.01,
          nburn=10000, ngen=100000, sub=1000, penalty=2,
          initial=c("inactive", "random", "high"))
 {
   initial <- match.arg(initial)
 
-  stopifnot(alpha > 0, alpha < beta, beta < 1)
-  stopifnot(pi > 0, pi < 1)
+  stopifnot(alpha > 0, alpha < gamma, gamma < 1)
+  stopifnot(p > 0, p < 1)
   stopifnot(nburn >=0)
   stopifnot(ngen >= 0)
   stopifnot(sub >= 0)
@@ -67,8 +67,8 @@ function(whole, part, edge,
           as.character(edge[,1]),
           as.character(edge[,2]),
           as.double(alpha),
-          as.double(beta),
-          as.double(pi),
+          as.double(gamma),
+          as.double(p),
           as.integer(nburn),
           as.integer(ngen),
           as.integer(sub),
