@@ -21,7 +21,11 @@ ILP(I, y, alpha, gamma, p)
 \details{R package \code{Rglpk} is used to perform the integer linear programming. Generally, alpha and gamma can be estimated from the gene-level data by users themselves (see reference for examples), and alpha is less than gamma. p can be estimated via R package \code{MGSA} with alpha and gamma fixed. Since ILP is a complex problem in the optimization field, the running time might be very long. This function is invoked in \code{sequentialRM}.
 }
 
-\value{The output has the same structure as \code{Rglpk_solve_LP} in the \code{Rglpk} package, which is a list consisting of optimum, solution (in the order of wholes and parts) and status.}
+\value{The output has the same structure as \code{Rglpk_solve_LP} in the \code{Rglpk} package, which is a list consisting of optimum, solution (in the order of wholes and parts) and status.
+	\item{optimum}{the value of the objective function at the optimum}
+	\item{solution}{the vector of optimal coefficients (0-1vector)}
+	\item{status}{an integer with status information about the solution returned. If the control parameter canonicalize_status is set (the default) then it will return 0 for the optimal solution being found, and non-zero otherwise. If the control parameter is set to FALSE it will return the GLPK status codes.}
+	}
 
 \references{Zhishi W., Qiuling H., Bret L. and Michael N.: A multi-functional analyzer uses parameter constaints to improve the efficiency of model-based gene-set analysis (2013). }
 \seealso{\code{sequentialRM}}
@@ -29,15 +33,16 @@ ILP(I, y, alpha, gamma, p)
 
 \examples{
 data(t2d)
+
 ## Use 5 and 10 as the trimming parameters
-newI <- subRM(t2d$I, 5, 10)
+Isub <- subRM(t2d$I, 5, 10)
 ## the corresponding gene-level data
-newy <- t2d$y[rownames(newI)]
+ysub <- t2d$y[rownames(Isub)]
 
 ## set the system parameters
 alpha <- 0.00019
 gamma <- 0.02279
 p <- 0.00331
 ## perform the ILP
-res <- ILP(newI, newy, alpha, gamma, p)
+res <- ILP(Isub, ysub, alpha, gamma, p)
 }

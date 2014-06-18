@@ -26,7 +26,11 @@ Generally, alpha and gamma can be estimated from the gene-level data by users th
 We first perform the ILP on an initial incidence matrix (the smaller matrix) with lower bound equal lower bound of I and upper bound nupstart; then do another ILP, making use of the results obtained from the last ILP, on the bigger incidence matrix with upper bound equal nupstart + by. This process is repeated until the original incidence matrix I is reached. The suggested value for nupstart is 10. \code{sequentialRM} is our main function to perform the ILP calculation. \code{ILP}, \code{shrinkRM} and \code{optimalRM} are all invoked in this function.
 }
 
-\value{Return a list consisting of onwholes: the active wholes, i.e., the MFA-ILP estimate, and sol: has the same structure with the output of \code{ILP}.}
+\value{Return a list consisting of \code{onwholes}: the active wholes, i.e., the MFA-ILP (MAP) estimate, and \code{sol}: has the same structure with the output of \code{ILP},
+	\item{optimum}{the value of the objective function at the optimum}
+	\item{solution}{the vector of optimal coefficients (0-1vector)}
+	\item{status}{an integer with status information about the solution returned. If the control parameter canonicalize_status is set (the default) then it will return 0 for the optimal solution being found, and non-zero otherwise. If the control parameter is set to FALSE it will return the GLPK status codes.}
+	}
 
 \references{Zhishi W., Qiuling H., Bret L. and Michael N.: A multi-functional analyzer uses parameter constaints to improve the efficiency of model-based gene-set analysis (2013). }
 %\seealso{}
@@ -34,15 +38,18 @@ We first perform the ILP on an initial incidence matrix (the smaller matrix) wit
 
 \examples{
 data(t2d)
+
+Isub <- subRM(t2d$I,5,20)
+ysub <- t2d$y[rownames(Isub)]
+
 ## set the system parameters
 alpha <- 0.00019
 gamma <- 0.02279
 p <- 0.00331
-\dontrun{
-## use the sequential approach to get the MAP estimate on the Type 2
-diabetes example; this may take a couple hours ##
-res <- sequentialRM(t2d$I, t2d$y, nupstart = 10, by =1, alpha, gamma, p)
-}
+
+## use the sequential approach to get the MAP estimate on a smaller
+## example of type 2 diabetes 
+res <- sequentialRM(Isub, ysub, nupstart = 10, by =1, alpha, gamma, p)
 }
 
 

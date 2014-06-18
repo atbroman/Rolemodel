@@ -1,17 +1,15 @@
 useDynLib(Rolemodel)
 
-## function to export ##
+## export functions ##
 export(ILP)
 export(sequentialRM)
 export(subRM)
-export(optimalRM)
-export(shrinkRM)
 
 export(bp)
 export(I2edge)
 export(gs2edge)
 export(bpTable)
-export(estPi)
+export(estP)
 
 ## import functions ##
 importFrom(mgsa, mgsa)

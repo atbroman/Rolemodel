@@ -1,6 +1,6 @@
 Package: Rolemodel
-Version: 1.1
-Date: 2014-06-09
+Version: 1.1.1
+Date: 2014-06-18
 Title: Gene-set analysis via MFA-ILP
 Author: Zhishi Wang <wangz@stat.wisc.edu, Michael Newton <newton@stat.wisc.edu>,Subhrangshu Nandi, Aimee Teo Broman, Karl W. Broman, Bret Larget
 Maintainer: Zhishi Wang <wangz@stat.wisc.edu>
@@ -10,4 +10,4 @@ Suggests: org.Hs.eg.db, GO.db, KEGG.db
 LazyLoad: yes
 LazyData: yes
 License: GPL (>= 2)
-Packaged: 2014-06-09 09:53:00 UTC
+Packaged: 2014-06-18 09:21:00 UTC

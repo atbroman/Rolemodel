@@ -1,5 +1,5 @@
-\name{estPi}
-\alias{estPi}
+\name{estP}
+\alias{estP}
 
 \title{Estimate p using \code{mgsa}}
 \description{
@@ -7,7 +7,7 @@ Uses the \code{mgsa} library to estimate \code{pi} for input to the
 \code{ILP}, \code{sequentialRM}, \code{bp} functions.
 }
 \usage{
-estPi(I, y, alpha, gamma)
+estP(I, y, alpha, gamma)
 }
 
 \arguments{
@@ -38,7 +38,7 @@ Aimee Teo Broman, Zhishi Wang
 \examples{
 data(t2d)
 
-estPi(t2d$I,t2d$y,alpha=0.00019,gamma=0.02279)
+estP(t2d$I,t2d$y,alpha=0.00019,gamma=0.02279)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

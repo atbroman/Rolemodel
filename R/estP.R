@@ -1,5 +1,5 @@
 
-estPi <- function(I,y,alpha,gamma){
+estP <- function(I,y,alpha,gamma){
     Imgsa <- lapply(1:ncol(I), function(j)
                     as.character(which(I[,j]==1)))
     Imgsa <- new("MgsaSets",sets=Imgsa)
