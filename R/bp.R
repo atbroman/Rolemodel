@@ -1,35 +1,30 @@
-#' MCMC with bipartite graph 
-#'
-#' MCMC with bipartite graph
-#' @param whole Vector of character strings with names of whole nodes
-#' @param part Vector of 0's and 1's indicating active part nodes; names are the names of the part nodes
-#' @param edge Matrix with two columns; each row indicates an edge between a whole node and a part node
-#' @param alpha Parameter alpha (0 < alpha < gamma < 1)
-#' @param gamma Parameter alpha (0 < alpha < gamma < 1)
-#' @param p Parameter p (0 < p < 1)
-#' @param nburn Number of burn-in generations
-#' @param ngen Number of sample generations
-#' @param sub Subsample rate for burn-in and sample files
-#' @param penalty Penalty per illegal node to loglikelihood
-#' @param initial Initial state (see Details)
-#'
-#' @return data frame with "whole" results; burn+sample detail are included as an attribute,
-#' \code{"samples"}, which is a matrix
-#'
-#' @details The \code{initial} argument can take one of three values:
-#' \code{"inactive"} - all whole nodes inactive; \code{"random"} - all
-#' whole nodes active with probability \code{p}, no illegal nodes; or
-#' \code{"high"} - all nodes with proportion of connected part nodes
-#' with response equal to 1 above 0.4 are active, no illegal nodes.
-#'
-#' @export
-#' @useDynLib Rolemodel
-#' @keywords models
-#'
-#' @examples
-#' data(t2d)
-#' bp.out <- bp(whole=t2d$whole, part=t2d$part, edge=t2d$edge,
-#'              nburn=1000, ngen=1000, sub=100)
+# MCMC with bipartite graph
+#
+#  whole Vector of character strings with names of whole nodes
+#  part Vector of 0's and 1's indicating active part nodes; names are the names of the part nodes
+#  edge Matrix with two columns; each row indicates an edge between a whole node and a part node
+#  alpha Parameter alpha (0 < alpha < gamma < 1)
+#  gamma Parameter alpha (0 < alpha < gamma < 1)
+#  p Parameter p (0 < p < 1)
+#  nburn Number of burn-in generations
+#  ngen Number of sample generations
+#  sub Subsample rate for burn-in and sample files
+#  penalty Penalty per illegal node to loglikelihood
+#  initial Initial state (see Details)
+#
+# return value: data frame with "whole" results; burn+sample detail are included as an attribute,
+# "samples", which is a matrix
+#
+# The initial argument can take one of three values:
+# "inactive" - all whole nodes inactive; "random" - all
+# whole nodes active with probability p, no illegal nodes; or
+# "high" - all nodes with proportion of connected part nodes
+# with response equal to 1 above 0.4 are active, no illegal nodes.
+#
+# Example:
+# data(t2d)
+# bp.out <- bp(whole=t2d$whole, part=t2d$part, edge=t2d$edge,
+#              nburn=1000, ngen=1000, sub=100)
 bp <-
 function(whole, part, edge,
          alpha=0.05, gamma=0.2, p=0.01,
@@ -44,7 +39,7 @@ function(whole, part, edge,
   stopifnot(ngen >= 0)
   stopifnot(sub >= 0)
   stopifnot(penalty >= 0)
-  
+
   stopifnot(length(whole) == length(unique(whole)))
   stopifnot(length(names(part)) == length(unique(names(part))))
   stopifnot(all(!is.na(part) & part==0 | part==1))
