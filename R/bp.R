@@ -18,12 +18,12 @@
 #'
 #' @details The \code{initial} argument can take one of three values:
 #' \code{"inactive"} - all whole nodes inactive; \code{"random"} - all
-#' whole nodes active with probability \code{pi}, no illegal nodes; or
+#' whole nodes active with probability \code{p}, no illegal nodes; or
 #' \code{"high"} - all nodes with proportion of connected part nodes
 #' with response equal to 1 above 0.4 are active, no illegal nodes.
 #'
 #' @export
-#' @useDynLib bp
+#' @useDynLib Rolemodel
 #' @keywords models
 #'
 #' @examples
