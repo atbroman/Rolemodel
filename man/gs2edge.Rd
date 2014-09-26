@@ -9,13 +9,13 @@ Given a vector of genes and a gene set library, create input objects for
 enrichment functions
 }
 \usage{
-gs2edge(idlist, idtype = c("SYMBOL", "ENTREZ", "REFSEQ", "ENSEMBL", "ACCNUM", "UNIPROT", "PMID"), lib, library.loc = NULL, n.upp = 50, n.low = 5, sets = c("GO", "KEGG"))
+gs2edge(idlist, idtype = c("SYMBOL", "ENTREZID", "REFSEQ", "ENSEMBL", "ACCNUM", "UNIPROT", "PMID"), lib, library.loc = NULL, n.upp = 50, n.low = 5, sets = c("GO", "KEGG"))
 }
 
 \arguments{
   \item{idlist}{character vector of gene ids for
   which to test enrichment of gene set categories}
-  \item{idtype}{character, type of gene ids: SYMBOL, ENTREZ, REFSEQ,
+  \item{idtype}{character, type of gene ids: SYMBOL, ENTREZID, REFSEQ,
   ENSEMBL, ACCNUM, UNIPROT, PMID.  Default is SYMBOL}
   \item{lib}{character, organism library, e.g. "org.Hs.eg"}
   \item{library.loc}{character, location of library if local}

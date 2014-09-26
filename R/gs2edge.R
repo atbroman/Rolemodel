@@ -3,7 +3,7 @@
 ## lib = db library
 
 gs2edge <- function(idlist,
-                 idtype=c("SYMBOL","ENTREZ","REFSEQ",
+                 idtype=c("SYMBOL","ENTREZID","REFSEQ",
                      "ENSEMBL","ACCNUM","UNIPROT","PMID"),
                  lib, library.loc=NULL,
                  n.upp=50,n.low=5,
@@ -16,7 +16,7 @@ gs2edge <- function(idlist,
     gs <- c(GO="GO2ALLEGS",KEGG="PATH2EG")
 
     ## idlist to egs ##
-    egs <- if(idtype=="ENTREZ") idlist else
+    egs <- if(idtype=="ENTREZID") idlist else
     toTable(revmap(get(paste(lib,idtype,sep="")))[idlist])[,1]
     
     gset <- get(paste(lib,gs[sets],sep=""))
